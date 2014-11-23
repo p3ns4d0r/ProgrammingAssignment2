@@ -1,20 +1,19 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Matrix inversion is usually a costly computation and there may be some
+## benefit to caching the inverse of a matrix rather than computing it
+## repeatedly, and that is what this two functions do.
 
-## Write a short comment describing this function
-
+##  Creates a "cache.matrix object" with four "methods":
+## get() : returns the matrix
+## set() : sets a new matrix
+## getInverse() : returns the inverse of the matrix if it has been saved
+## setInverse() : sets the inverse of the matrix
+##
+## Arguments:
+## x : matrix
+##
+## Returns:
+## "cache.matrix object"
 makeCacheMatrix <- function(x = matrix()) {
-    # Creates a "cache.matrix object" with four "methods":
-    # get() : returns the matrix
-    # set() : sets a new matrix
-    # getInverse() : returns the inverse of the matrix if it has been saved
-    # setInverse() : sets the inverse of the matrix
-    #
-    # Arguments:
-    # x : matrix
-    #
-    # Returns:
-    # cache.matrix object
     
     inverse <- NULL
     set <- function(y) {
@@ -31,18 +30,18 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
 
+## Calculates the inverse of the given "cache.matrix" if it has not been
+## saved before, and saves it in the "cache.matrix object"
+##
+## Arguments:
+## x : cache.matrix object
+## ... : other arguments for the solve function
+##
+## Returns:
+## The inverse of the matrix
 cacheSolve <- function(x, ...) {
-    # Calculates the inverse of the given "cache.matrix" if it has not been
-    # saved before, and saves it in the "cache.matrix object"
-    #
-    # Arguments:
-    # x : cache.matrix object
-    # ... : other arguments for the solve function
-    #
-    # Returns:
-    # 
+
     inverse <- x$getInverse()
     if(!is.null(inverse)) {
         message("getting cached data")
